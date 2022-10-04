@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+
+	<style type="text/css">
+	@font-face {
+    font-family: 'OKDDUNG';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/OKDDUNG.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+		html{font-size:48pt; font-family: 'OKDDUNG', sans-serif; 
+			color: tomato;
+			position: relative; background: #FFEDAB;}
+		body,h1,h2,h3,h4,p,ul,li{margin: 0; padding: 0;}
+		.col3{width: 33.33vw; height: 30vh; display: flex; font-size: 72pt; text-align: center;}
+		.row{margin-right: 10vw;
+			margin-left: 10vw;
+				display: flex;
+				padding: 50px;
+				margin-bottom: 10px;
+				background: white;
+				border-radius: 100px;
+				margin-top: 5vh;
+				margin-bottom: 20vh;
+				z-index: 2;
+				box-shadow: 0 0 20px white;}
+		.pecoClass{left: 0; top: 0; position: absolute; z-index: -1;}
+		#foodId{font-size: 48pt;}
+		.title{ text-align: center; margin: auto; margin-top: 20vh;}
+		.subtitle{color: brown; font-family: none; font-size:24pt; animation: glow 1s alternate infinite;}
+		@keyframes glow{ to{opacity: 0;} }
+	</style>
+</head>
+<body>
+	<div class="title">🤍이따  뭐 먹지?🤍<br><span class="subtitle" >스페이스바를 눌러보세요!</span></div>
+	<div class="row">
+		<div class="col3">
+			나는<br>지금
+		</div>
+		<div class="col3">
+			<div id= "foodId" style="font-size: 0.2rem;"></div>
+		</div>
+		<div class="col3" style="text-align: right;">
+			먹고<br>싶다
+		</div>
+	</div>
+	<script type="text/javascript">
+
+/// ---------------------------------------랜덤 이벤트
+		var food = ["프레첼🥨이", "핫케익🥞이", "치킨🍗이","빙수🍨가", "케이크🍰가", "랍스타🦞가", "대게🦀가", "오징어버터구이🦑가", "에비텐동🍤이", "서브웨이🌯가", "이삭 토스트🥪가", "아이스크림🍦이", "라라브레드🍞가"];
+
+		var myTimer = setInterval(select, 100);
+
+		function select(){
+			var randomFood = food[randomBH(0,food.length - 1)];
+			var outPut = document.createElement("span");
+			outPut.innerHTML =  randomFood; 
+			outPut.className = "col3";
+			foodId.appendChild(outPut);
+		}
+
+
+///------------------------------------------배경
+
+	var peco = ["peco1", "peco2", "peco3", "peco4"];
+
+	for(var i=0; i<20; i++){
+		var t = document.createElement("img");
+		t.src = peco[randomBH(0,3)] + ".png"
+		t.className = "pecoClass"
+		t.style.width = randomBH(200,300)+"px"
+		t.style.height = "auto";
+		t.style.left = Math.random()*screen.availWidth - 300 + "px"
+		t.style.top = Math.random()*screen.availWidth - 300 + "px"
+		document.body.appendChild(t); 
+	}
+
+///------------------------------------------글씨 색상 랜덤
+
+foodId.style.color = "rgb("+randomBH(20,60)+","+randomBH(190,255)+","+randomBH(100,200)+")";
+
+/// ---------------------------------------키보드 이벤트
+
+		let stop = true;
+		window.onkeydown = function(e){
+			if(e.keyCode == 32 && stop){
+			clearInterval(myTimer);
+			stop = false;
+			}else if(e.keyCode == 32){
+				myTimer = setInterval(select, 100);
+				stop = true;
+			}
+		}
+
+		
+
+
+///
+/*
+		var randomfood = food[randomBH(0,food.length - 1)];
+				var chooseFood = document.createElement("div");
+				chooseFood.innerHTML = randomfood;
+				foodId.appendChild(chooseFood);
+			
+		console.log(randomfood);
+		chooseFood();
+
+		function chooseFood(){
+			for(i=0; i++;){document.createElement("div");
+		chooseFood.innerHTML = randomfood;
+		foodId.appendChild(chooseFood);
+			if(i>food.length){i=0};}
+			var myTimer = setInterval(s, 200);
+
+			function s(){};
+		}
+		*/
+		
+
+		
+
+	
+
+		function randomBH(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;}
+
+	</script>
+</body>
+</html>
